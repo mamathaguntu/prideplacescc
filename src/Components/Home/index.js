@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 }));
 
 const Home = () => {
@@ -31,6 +36,7 @@ const Home = () => {
   // console.log("authorName", authorName);
   // console.log("catchPhrase", catchPhrase)
   useEffect(() => {
+    // load the user posts
     loadPosts();
   }, []);
 
@@ -42,6 +48,7 @@ const Home = () => {
   }
 
   const handleClick = async (userId, postTitle, postBody) => {
+    // on click , load the details of the post on the modal
     const apiUrl = 'https://jsonplaceholder.typicode.com/users?id=' + userId;
     const response = await fetch(apiUrl).then((response) => response.json());
     // const result = await response.json();
@@ -52,6 +59,7 @@ const Home = () => {
     setCatchPhrase(response[0].company.catchPhrase);
     setTitle(postTitle);
     setBody(postBody);
+    // Open the modal
     setOpenModal(true);
   }
   const handleClose = () => {
@@ -73,6 +81,7 @@ const Home = () => {
 
       }
       <Modal
+        className={classes.modal}
         open={openModal}
         onClose={handleClose}
         aria-labelledby='simple-modal-title'
@@ -80,17 +89,18 @@ const Home = () => {
       >
         <div className={classes.paper}>
           <Typography>
-            <h4>Title : {title}</h4>
+            Title : {title}
           </Typography>
           <Typography>
-            <h5>Author : {authorName}</h5>
+            Author : {authorName}
           </Typography>
           <Typography>
-            <h5>CatchPhrase : {catchPhrase}</h5>
+            CatchPhrase : {catchPhrase}
           </Typography>
           <Typography>
             {body}
           </Typography>
+          {/* close button for modal */}
           <Button type='submit' variant='contained' color='primary' onClick={handleClose}>Close</Button>
         </div>
 
