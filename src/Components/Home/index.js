@@ -88,16 +88,20 @@ const Home = () => {
         aria-describedby='simple-modal-description'
       >
         <div className={classes.paper}>
-          <Typography>
-            Title : {title}
+          <Typography component={'div'}>
+            <h4> Title :</h4>
+            {title}
           </Typography>
-          <Typography>
-            Author : {authorName}
+          <Typography component={'div'}>
+            <h4> Author :</h4>
+            {authorName}
           </Typography>
-          <Typography>
-            CatchPhrase : {catchPhrase}
+          <Typography component={'div'}>
+            <h4> CatchPhrase :</h4>
+            {catchPhrase}
           </Typography>
-          <Typography>
+          <Typography component={'div'}>
+            <h4>Contents</h4>
             {body}
           </Typography>
           {/* close button for modal */}
